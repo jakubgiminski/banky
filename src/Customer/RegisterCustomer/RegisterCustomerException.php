@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Customer;
+namespace BankApp\Customer\RegisterCustomer;
 
 use RuntimeException;
 
