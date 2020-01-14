@@ -15,7 +15,8 @@ final class SetUpDatabase
 
     public function __invoke(string $databaseName) : void
     {
-        $this->databaseClient->rawSql("CREATE DATABASE IF NOT EXISTS bank;");
+        $this->databaseClient->rawSql("DROP DATABASE IF EXISTS $databaseName;");
+        $this->databaseClient->rawSql("CREATE DATABASE IF NOT EXISTS $databaseName;");
         $this->databaseClient->rawSql("USE $databaseName;");
 
         $this->databaseClient->rawSql(

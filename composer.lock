@@ -4,8 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43087fe1da33b0bab08ca4e74f5b3f66",
+    "content-hash": "f3f9cc2782cf3fc009ded0b3e4647f1f",
     "packages": [
+        {
+            "name": "comquer/array-validator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/comquer/array-validator.git",
+                "reference": "5602d80d0dc52233dff5d7a9c328ce3d0f3c830c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/comquer/array-validator/zipball/5602d80d0dc52233dff5d7a9c328ce3d0f3c830c",
+                "reference": "5602d80d0dc52233dff5d7a9c328ce3d0f3c830c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Comquer\\ArrayValidator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Jakub Giminski",
+                    "email": "jakubgiminski@gmail.com"
+                }
+            ],
+            "description": "Static array validator",
+            "time": "2019-04-17T13:02:52+00:00"
+        },
         {
             "name": "izniburak/router",
             "version": "v1.5.1",
@@ -1986,7 +2019,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "php-di/php-di": 20
+        "php-di/php-di": 20,
+        "comquer/array-validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

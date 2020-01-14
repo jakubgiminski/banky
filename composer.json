@@ -19,6 +19,7 @@
     "require": {
         "izniburak/router": "^1",
         "php-di/php-di": "dev-master",
+        "comquer/array-validator": "dev-master",
         "ext-json": "*",
         "ext-mysqli": "*"
     },
