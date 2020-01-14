@@ -2,7 +2,7 @@
 
 namespace BankApp\Http;
 
-abstract class Request
+class Request
 {
     private array $payload;
 
@@ -39,7 +39,7 @@ abstract class Request
     protected function requireEmailParameter(string $parameterName) : void
     {
         $this->requireParameter($parameterName, function ($value) : bool {
-            return filter_var($value, FILTER_VALIDATE_EMAIL);
+            return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
         });
     }
 

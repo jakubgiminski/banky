@@ -18,7 +18,7 @@ abstract class Response
     {
         return json_encode([
             'code' => $this->code,
-            'payload' => $this->payload,
+            'message' => $this->payload,
         ]);
     }
 }

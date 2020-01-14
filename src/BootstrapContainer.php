@@ -2,6 +2,8 @@
 
 namespace BankApp;
 
+use BankApp\Customer\CustomerRepository;
+use BankApp\Customer\RegisterCustomer\RegisterCustomerController;
 use BankApp\Persistence\DatabaseClient;
 use BankApp\Persistence\MySql\MySqlClient;
 use DI\Container;
@@ -24,6 +26,11 @@ final class BootstrapContainer
 
         $databaseClient = $container->get(MySqlClient::class);
         $container->set(DatabaseClient::class, $databaseClient);
+
+        $container->set(CustomerRepository::class, new CustomerRepository($databaseClient));
+
+        $customerRepository = $container->get(CustomerRepository::class);
+        $container->set(RegisterCustomerController::class, new RegisterCustomerController($customerRepository));
 
         return $container;
     }

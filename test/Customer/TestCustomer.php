@@ -3,6 +3,7 @@
 namespace BankAppTest\Customer;
 
 use BankApp\Customer\Customer;
+use BankApp\Customer\RegisterCustomer\RegistrationBonus;
 
 final class TestCustomer extends Customer
 {
@@ -14,7 +15,7 @@ final class TestCustomer extends Customer
             uniqid('gender_'),
             uniqid('country_'),
             uniqid('email_'),
-            rand(1, 100)
+            RegistrationBonus::random()
         );
     }
 }

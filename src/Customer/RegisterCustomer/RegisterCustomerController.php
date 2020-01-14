@@ -1,11 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Customer;
+namespace BankApp\Customer\RegisterCustomer;
 
-use BankApp\Customer\RegisterCustomer\RegisterCustomerException;
-use BankApp\Customer\RegisterCustomer\RegisterCustomerRequest;
-use BankApp\Customer\RegisterCustomer\RegisterCustomerResponse;
-use BankApp\Customer\RegisterCustomer\RegistrationBonus;
+use BankApp\Customer\Customer;
+use BankApp\Customer\CustomerRepository;
 
 class RegisterCustomerController
 {
