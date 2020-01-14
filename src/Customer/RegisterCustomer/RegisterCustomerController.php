@@ -5,6 +5,7 @@ namespace BankApp\Customer;
 use BankApp\Customer\RegisterCustomer\RegisterCustomerException;
 use BankApp\Customer\RegisterCustomer\RegisterCustomerRequest;
 use BankApp\Customer\RegisterCustomer\RegisterCustomerResponse;
+use BankApp\Customer\RegisterCustomer\RegistrationBonus;
 
 class RegisterCustomerController
 {
@@ -28,7 +29,7 @@ class RegisterCustomerController
             $request->getParameter('gender'),
             $request->getParameter('country'),
             $request->getParameter('email'),
-            rand(5, 20)
+            RegistrationBonus::random()
         );
 
         $this->customerRepository->persist($customer);

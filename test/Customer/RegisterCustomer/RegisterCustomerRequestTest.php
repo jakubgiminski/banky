@@ -3,7 +3,7 @@
 namespace BankAppTest\Customer\RegisterCustomer;
 
 use BankApp\Customer\RegisterCustomer\RegisterCustomerRequest;
-use BankApp\Http\RequestException;
+use BankApp\Http\InvalidRequestException;
 use PHPUnit\Framework\TestCase;
 
 class RegisterCustomerRequestTest extends TestCase
@@ -17,7 +17,7 @@ class RegisterCustomerRequestTest extends TestCase
             'email' => 'invalid',
         ]);
 
-        $exception = RequestException::fromErrors([
+        $exception = InvalidRequestException::fromErrors([
             'Required parameter `lastName` missing',
             'Required parameter `gender` missing',
             'Invalid value of required parameter `country`',

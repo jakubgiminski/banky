@@ -16,14 +16,14 @@ abstract class Request
     public function __invoke() : void
     {
         if (empty($this->errors) === false) {
-            throw RequestException::fromErrors($this->errors);
+            throw InvalidRequestException::fromErrors($this->errors);
         }
     }
 
     public function getParameter(string $parameterName)
     {
         if (isset($this->payload[$parameterName]) === false) {
-            throw RequestException::forMissingParameter($parameterName);
+            throw InvalidRequestException::forMissingParameter($parameterName);
         }
 
         return $this->payload[$parameterName];

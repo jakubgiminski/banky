@@ -1,7 +1,10 @@
 <?php
 
 use BankApp\BootstrapContainer;
-use BankApp\Customer\RegisterCustomer;
+use BankApp\Customer\RegisterCustomer\RegisterCustomerRequest;
+use BankApp\Customer\RegisterCustomerController;
+use BankApp\Http\InvalidRequestException;
+use BankApp\Http\InvalidRequestResponse;
 
 require 'vendor/autoload.php';
 
@@ -13,14 +16,18 @@ $router->get('/', function() {
     return 'Bank App';
 });
 
-$router->post('/customers', function () use ($container) {
+$controller = $container->get(RegisterCustomerController::class);
+$router->post('/customers', function () use ($controller) {
     try {
-        $registerCustomer = $container->get(RegisterCustomer::class);
-        $customer = $registerCustomer($_POST);
-        return json_encode($customer->serialize());
-    } catch (\Throwable $exception) {
-        return json_encode(['error' => $exception->getMessage()]);
+        $request = new RegisterCustomerRequest($_POST);
+        $request();
+    } catch (InvalidRequestException $exception) {
+        return InvalidRequestResponse::fromException($exception)->serialize();
     }
+
+    $response = $controller($request);
+
+    return $response->serialize();
 });
 
 $router->run();
