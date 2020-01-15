@@ -1,5 +1,5 @@
 {
-    "name": "jakubgiminski/bank-app",
+    "name": "jakubgiminski/banky",
     "authors": [
         {
             "name": "Jakub Giminski",
@@ -19,9 +19,10 @@
         }
     },
     "require": {
-        "izniburak/router": "^1",
         "php-di/php-di": "dev-master",
         "comquer/array-validator": "dev-master",
+        "comquer/collection": "dev-master",
+        "comquer/reflection": "dev-master",
         "ext-json": "*",
         "ext-mysqli": "*"
     },

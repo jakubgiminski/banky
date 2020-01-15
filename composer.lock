@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3f9cc2782cf3fc009ded0b3e4647f1f",
+    "content-hash": "8627311e0fd46e4af89077835dd6ca11",
     "packages": [
         {
             "name": "comquer/array-validator",
@@ -40,52 +40,71 @@
             "time": "2019-04-17T13:02:52+00:00"
         },
         {
-            "name": "izniburak/router",
-            "version": "v1.5.1",
+            "name": "comquer/collection",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/izniburak/php-router.git",
-                "reference": "2df4ef6512796ac9a61159f01915e6636f69e4db"
+                "url": "https://github.com/comquer/collection.git",
+                "reference": "4a179ae482afddc43f51fa1c5f3651b3812635f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/izniburak/php-router/zipball/2df4ef6512796ac9a61159f01915e6636f69e4db",
-                "reference": "2df4ef6512796ac9a61159f01915e6636f69e4db",
+                "url": "https://api.github.com/repos/comquer/collection/zipball/4a179ae482afddc43f51fa1c5f3651b3812635f3",
+                "reference": "4a179ae482afddc43f51fa1c5f3651b3812635f3",
                 "shasum": ""
             },
-            "require": {
-                "php": ">=5.5.0"
-            },
             "require-dev": {
-                "guzzlehttp/guzzle": "^5.3",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.0"
+                "phpunit/phpunit": "^7.3"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Buki\\": "src"
+                    "Comquer\\Collection\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
-                    "name": "İzni Burak Demirtaş",
-                    "email": "info@burakdemirtas.org",
-                    "homepage": "http://burakdemirtas.org"
+                    "name": "Jakub Giminski",
+                    "email": "jakubgiminski@gmail.com"
                 }
             ],
-            "description": "simple router class for php",
-            "homepage": "https://github.com/izniburak/php-router",
-            "keywords": [
-                "Simple",
-                "php",
-                "route",
-                "router"
+            "time": "2019-06-16T20:46:25+00:00"
+        },
+        {
+            "name": "comquer/reflection",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/comquer/reflection.git",
+                "reference": "60778d8bb910a950fceefb741903eed6f7546f6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/comquer/reflection/zipball/60778d8bb910a950fceefb741903eed6f7546f6e",
+                "reference": "60778d8bb910a950fceefb741903eed6f7546f6e",
+                "shasum": ""
+            },
+            "require": {
+                "comquer/collection": "dev-master"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.5.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Comquer\\Reflection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Jakub Giminski",
+                    "email": "jakubgiminski@gmail.com"
+                }
             ],
-            "time": "2019-12-17T21:20:57+00:00"
+            "time": "2019-06-05T09:28:39+00:00"
         },
         {
             "name": "jeremeamia/superclosure",
@@ -2020,7 +2039,9 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "php-di/php-di": 20,
-        "comquer/array-validator": 20
+        "comquer/array-validator": 20,
+        "comquer/collection": 20,
+        "comquer/reflection": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

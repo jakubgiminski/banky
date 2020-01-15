@@ -4,6 +4,7 @@ namespace Banky\Customer\RegisterCustomer;
 
 use Banky\Customer\Customer;
 use Banky\Customer\CustomerRepository;
+use BankyFramework\Http\CreateResourceResponse;
 
 class RegisterCustomerController
 {
@@ -14,7 +15,7 @@ class RegisterCustomerController
         $this->customerRepository = $customerRepository;
     }
 
-    public function __invoke(RegisterCustomerRequest $request) : RegisterCustomerResponse
+    public function __invoke(RegisterCustomerRequest $request) : CreateResourceResponse
     {
         $customerEmail = $request->getParameter('email');
         if ($this->customerRepository->exists($customerEmail) === true) {
@@ -32,6 +33,6 @@ class RegisterCustomerController
 
         $this->customerRepository->persist($customer);
 
-        return RegisterCustomerResponse::fromCustomer($customer);
+        return CreateResourceResponse::fromResource($customer->serialize());
     }
 }
