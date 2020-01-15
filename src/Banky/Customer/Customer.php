@@ -4,6 +4,8 @@ namespace Banky\Customer;
 
 class Customer
 {
+    private CustomerId $id;
+
     private string $firstName;
 
     private string $lastName;
@@ -16,8 +18,16 @@ class Customer
 
     private int $bonus;
 
-    public function __construct(string $firstName, string $lastName, string $gender, string $country, string $email, int $bonus)
-    {
+    public function __construct(
+        CustomerId $id,
+        string $firstName,
+        string $lastName,
+        string $gender,
+        string $country,
+        string $email,
+        int $bonus
+    ) {
+        $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->gender = $gender;
@@ -34,6 +44,7 @@ class Customer
     public function serialize() : array
     {
         return [
+            'id' => (string) $this->id,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'gender' => $this->gender,

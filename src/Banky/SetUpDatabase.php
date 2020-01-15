@@ -21,6 +21,7 @@ final class SetUpDatabase
 
         $this->databaseClient->rawSql(
             'CREATE TABLE customers (
+                id varchar(100),
                 firstName varchar(100), 
                 lastName varchar(100), 
                 gender varchar(100), 

@@ -24,7 +24,8 @@
         "comquer/collection": "dev-master",
         "comquer/reflection": "dev-master",
         "ext-json": "*",
-        "ext-mysqli": "*"
+        "ext-mysqli": "*",
+        "ramsey/uuid": "^3.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0"

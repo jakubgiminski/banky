@@ -3,6 +3,7 @@
 namespace Banky\Customer\RegisterCustomer;
 
 use Banky\Customer\Customer;
+use Banky\Customer\CustomerId;
 use Banky\Customer\CustomerRepository;
 use BankyFramework\Http\CreateResourceResponse;
 
@@ -23,6 +24,7 @@ class RegisterCustomerController
         }
 
         $customer = new Customer(
+            CustomerId::generate(),
             $request->getParameter('firstName'),
             $request->getParameter('lastName'),
             $request->getParameter('gender'),
