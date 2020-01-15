@@ -14,7 +14,7 @@ class InvalidRequestException extends InvalidArgumentException
 
         parent::__construct(
             json_encode($errors),
-            422
+            400
         );
     }
 

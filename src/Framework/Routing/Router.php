@@ -5,6 +5,7 @@ namespace BankyFramework\Routing;
 use BankyFramework\Http\ErrorResponse;
 use BankyFramework\Http\InvalidRequestException;
 use BankyFramework\Http\InvalidRequestResponse;
+use BankyFramework\Http\Response;
 use Comquer\Collection\Collection;
 use Comquer\Collection\Type;
 use Comquer\Collection\UniqueIndex;
@@ -35,7 +36,7 @@ class Router extends Collection
         ));
     }
 
-    public function __invoke() : string
+    public function __invoke() : void
     {
         $route = $this->getRoute($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
         $requestClassName = (string) $route->getRequestClassName();
@@ -45,20 +46,28 @@ class Router extends Collection
         try {
             $request();
         } catch (InvalidRequestException $exception) {
-            return InvalidRequestResponse::fromException($exception)->serialize();
+            $this->resolve(InvalidRequestResponse::fromException($exception));
+            return;
         }
 
         $controller = $this->container->get((string) $route->getControllerClassName());
 
         try {
-            return $controller($request)->serialize();
+            $this->resolve($controller($request));
         } catch (Throwable $exception) {
-            return ErrorResponse::fromException($exception)->serialize();
+            $this->resolve(ErrorResponse::fromException($exception));
         }
     }
 
     private function getRoute(string $method, string $uri) : Route
     {
         return $this->get("$method:$uri");
+    }
+
+    private function resolve(Response $response) : void
+    {
+        header('Content-Type: application/json');
+        http_response_code($response->getCode());
+        echo $response->serialize();
     }
 }

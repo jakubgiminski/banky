@@ -8,6 +8,6 @@ class ErrorResponse extends Response
 {
     public static function fromException(Throwable $exception) : self
     {
-        return new self($exception->getCode(), [$exception->getMessage()]);
+        return new self($exception->getCode() ?: 500, [$exception->getMessage()]);
     }
 }

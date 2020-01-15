@@ -21,4 +21,9 @@ abstract class Response
             'message' => $this->message,
         ]);
     }
+
+    public function getCode(): int
+    {
+        return $this->code;
+    }
 }
