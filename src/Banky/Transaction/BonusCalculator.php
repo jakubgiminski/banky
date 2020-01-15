@@ -20,7 +20,7 @@ final class BonusCalculator
     public function __invoke(CustomerId $customerId, Money $depositAmount) : Money
     {
         if ($this->isCustomerEligibleForBonus($customerId) === false) {
-            return new Money(0);
+            return new Money();
         }
 
         return $depositAmount->multiplyBy(

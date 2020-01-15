@@ -3,8 +3,8 @@
 namespace Banky\Transaction;
 
 use Banky\Customer\CustomerId;
-use Banky\Transaction\Money;
 use BankyFramework\Persistence\DatabaseClient;
+use mysqli_result;
 
 class TransactionRepository
 {
@@ -42,7 +42,7 @@ class TransactionRepository
             SELECT * FROM $table WHERE customerId = '$customerId'
         ");
         $transactions = $this->hydrateResults($results);
-        
+
         return $transactions->calculateBalance();
     }
 
@@ -50,10 +50,10 @@ class TransactionRepository
     {
         $transactions = new TransactionCollection();
 
-        if (is_array($results) === false) {
-            return new $transactions;
+        if ($results instanceof mysqli_result === false) {
+            return $transactions;
         }
-
+        
         foreach ($results as $record) {
             $transactions->add(Transaction::deserialize($record));
         }
