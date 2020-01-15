@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BankAppTest\Customer;
+namespace BankyTest\Customer;
 
-use BankApp\Customer\Customer;
-use BankApp\Customer\RegisterCustomer\RegistrationBonus;
+use Banky\Customer\Customer;
+use Banky\Customer\RegisterCustomer\RegistrationBonus;
 
 final class TestCustomer extends Customer
 {

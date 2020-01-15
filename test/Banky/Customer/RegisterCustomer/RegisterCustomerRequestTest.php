@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BankAppTest\Customer\RegisterCustomer;
+namespace BankyTest\Customer\RegisterCustomer;
 
-use BankApp\Customer\RegisterCustomer\RegisterCustomerRequest;
-use BankApp\Http\InvalidRequestException;
+use Banky\Customer\RegisterCustomer\RegisterCustomerRequest;
+use BankyFramework\Http\InvalidRequestException;
 use PHPUnit\Framework\TestCase;
 
 class RegisterCustomerRequestTest extends TestCase

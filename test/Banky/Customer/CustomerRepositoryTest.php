@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace BankAppTest\Customer;
+namespace BankyTest\Customer;
 
-use BankApp\BootstrapContainer;
-use BankApp\Customer\CustomerRepository;
-use BankApp\SetUpDatabase;
+use Banky\BootstrapContainer;
+use Banky\Customer\CustomerRepository;
+use Banky\SetUpDatabase;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 

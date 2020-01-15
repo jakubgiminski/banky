@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Persistence\MySql;
+namespace BankyFramework\Persistence\MySql;
 
 use RuntimeException;
 

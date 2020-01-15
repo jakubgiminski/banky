@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Persistence\MySql;
+namespace BankyFramework\Persistence\MySql;
 
-use BankApp\Persistence\DatabaseClient;
-use BankApp\Persistence\SqlGenerator;
+use BankyFramework\Persistence\DatabaseClient;
+use BankyFramework\Persistence\SqlGenerator;
 use mysqli;
 
 final class MySqlClient implements DatabaseClient

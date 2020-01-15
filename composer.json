@@ -8,12 +8,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "BankApp\\": "src/"
+            "Banky\\": "src/Banky",
+            "BankyFramework\\": "src/Framework"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BankAppTest\\": "test/"
+            "BankyTest\\": "test/Banky",
+            "BankyFrameworkTest\\": "test/Banky/Framework"
         }
     },
     "require": {

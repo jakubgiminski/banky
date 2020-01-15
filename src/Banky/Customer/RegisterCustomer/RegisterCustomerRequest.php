@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Customer\RegisterCustomer;
+namespace Banky\Customer\RegisterCustomer;
 
-use BankApp\Http\Request;
+use BankyFramework\Http\Request;
 
 class RegisterCustomerRequest extends Request
 {

@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Customer\RegisterCustomer;
+namespace Banky\Customer\RegisterCustomer;
 
-use BankApp\Customer\Customer;
-use BankApp\Http\Response;
+use Banky\Customer\Customer;
+use BankyFramework\Http\Response;
 
 class RegisterCustomerResponse extends Response
 {

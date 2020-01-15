@@ -1,11 +1,11 @@
 <?php
 
-use BankApp\BootstrapContainer;
-use BankApp\Customer\RegisterCustomer\RegisterCustomerController;
-use BankApp\Customer\RegisterCustomer\RegisterCustomerRequest;
-use BankApp\Http\InvalidRequestException;
-use BankApp\Http\InvalidRequestResponse;
-use BankApp\Http\Response;
+use Banky\BootstrapContainer;
+use Banky\Customer\RegisterCustomer\RegisterCustomerController;
+use Banky\Customer\RegisterCustomer\RegisterCustomerRequest;
+use BankyFramework\Http\InvalidRequestException;
+use BankyFramework\Http\InvalidRequestResponse;
+use BankyFramework\Http\Response;
 
 require 'vendor/autoload.php';
 

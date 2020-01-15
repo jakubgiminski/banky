@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Customer;
+namespace Banky\Customer;
 
-use BankApp\Persistence\DatabaseClient;
+use BankyFramework\Persistence\DatabaseClient;
 
 final class CustomerRepository
 {

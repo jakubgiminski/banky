@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Http;
+namespace BankyFramework\Http;
 
 class Request
 {

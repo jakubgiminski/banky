@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Persistence;
+namespace BankyFramework\Persistence;
 
 interface DatabaseClient
 {

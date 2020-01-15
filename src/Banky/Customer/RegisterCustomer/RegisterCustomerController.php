@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Customer\RegisterCustomer;
+namespace Banky\Customer\RegisterCustomer;
 
-use BankApp\Customer\Customer;
-use BankApp\Customer\CustomerRepository;
+use Banky\Customer\Customer;
+use Banky\Customer\CustomerRepository;
 
 class RegisterCustomerController
 {

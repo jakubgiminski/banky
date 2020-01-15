@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace BankAppTest\Persistence;
+namespace BankyFrameworkTest\Persistence;
 
-use BankApp\Persistence\SqlGenerator;
+use BankyFramework\Persistence\SqlGenerator;
 use PHPUnit\Framework\TestCase;
 
 class SqlGeneratorTest extends TestCase

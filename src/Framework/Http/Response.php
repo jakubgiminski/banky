@@ -1,24 +1,24 @@
 <?php declare(strict_types=1);
 
-namespace BankApp\Http;
+namespace BankyFramework\Http;
 
 abstract class Response
 {
     private int $code;
 
-    private array $payload;
+    private array $message;
 
-    public function __construct(int $code, array $payload)
+    public function __construct(int $code, array $message)
     {
         $this->code = $code;
-        $this->payload = $payload;
+        $this->message = $message;
     }
 
     public function serialize() : string
     {
         return json_encode([
             'code' => $this->code,
-            'message' => $this->payload,
+            'message' => $this->message,
         ]);
     }
 }
