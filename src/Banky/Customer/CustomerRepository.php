@@ -17,14 +17,16 @@ final class CustomerRepository
 
     public function customerWithEmailExists(string $email) : bool
     {
-        $customers = $this->databaseClient->fetch(
-            self::TABLE,
-            [
+        return $this->customerExists([
                 'email' => $email,
-            ]
-        );
+        ]);
+    }
 
-        return empty($customers) === false;
+    public function customerWithIdExists(CustomerId $customerId) : bool
+    {
+        return $this->customerExists([
+            'id' => (string) $customerId,
+        ]);
     }
 
     public function save(Customer $customer) : void
@@ -34,5 +36,15 @@ final class CustomerRepository
             self::TABLE,
             $customer->serialize()
         );
+    }
+
+    private function customerExists(array $query)
+    {
+        $customers = $this->databaseClient->fetch(
+            self::TABLE,
+            $query
+        );
+
+        return empty($customers) === false;
     }
 }

@@ -16,12 +16,15 @@ class Transaction implements Serializable
 
     private int $timestamp;
 
-    public function __construct(TransactionId $id, Money $amount, CustomerId $customerId, int $timestamp)
+    private Money $bonus;
+
+    public function __construct(TransactionId $id, Money $amount, CustomerId $customerId, int $timestamp, Money $bonus = null)
     {
         $this->id = $id;
         $this->amount = $amount;
         $this->customerId = $customerId;
         $this->timestamp = $timestamp;
+        $this->bonus = $bonus ?: new Money(0);
     }
 
     public function getId() : TransactionId
