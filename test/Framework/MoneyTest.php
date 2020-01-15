@@ -2,7 +2,7 @@
 
 namespace BankyFrameworkTest;
 
-use BankyFramework\Money;
+use Banky\Transaction\Money;
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase

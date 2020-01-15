@@ -43,6 +43,13 @@ class Request
         });
     }
 
+    protected function requireMoneyParameter(string $parameterName) : void
+    {
+        $this->requireParameter($parameterName, function ($value) {
+            return is_numeric($value) && $value > 0;
+        });
+    }
+
     protected function requireParameter(string $parameterName, callable $isValid) : void
     {
         if (isset($this->payload[$parameterName]) === false) {

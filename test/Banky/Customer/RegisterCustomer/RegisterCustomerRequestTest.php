@@ -13,15 +13,15 @@ class RegisterCustomerRequestTest extends TestCase
     {
         $request = new RegisterCustomerRequest([
             'firstName' => 'Jon',
-            'country' => 111,
+            'country' => 'Polska',
             'email' => 'invalid',
         ]);
 
         $exception = InvalidRequestException::fromErrors([
             'Required parameter `lastName` missing',
             'Required parameter `gender` missing',
-            'Invalid value of required parameter `country`',
             'Invalid value of required parameter `email`',
+            'Invalid value of required parameter `country`',
         ]);
 
         $this->expectException(get_class($exception));

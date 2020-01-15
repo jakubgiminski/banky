@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Banky\Transaction\DepositMoney;
+namespace Banky\Transaction\WithdrawMoney;
 
 use BankyFramework\Http\Request;
 
-class DepositMoneyRequest extends Request
+class WithdrawMoneyRequest extends Request
 {
     public function __construct(array $payload)
     {

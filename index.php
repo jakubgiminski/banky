@@ -5,6 +5,8 @@ use Banky\Customer\RegisterCustomer\RegisterCustomerController;
 use Banky\Customer\RegisterCustomer\RegisterCustomerRequest;
 use Banky\Transaction\DepositMoney\DepositMoneyController;
 use Banky\Transaction\DepositMoney\DepositMoneyRequest;
+use Banky\Transaction\WithdrawMoney\WithdrawMoneyController;
+use Banky\Transaction\WithdrawMoney\WithdrawMoneyRequest;
 use BankyFramework\Routing\Router;
 
 require 'vendor/autoload.php';
@@ -24,6 +26,13 @@ $router->registerRoute(
     '/deposits',
     DepositMoneyRequest::class,
     DepositMoneyController::class
+);
+
+$router->registerRoute(
+    'POST',
+    '/withdrawals',
+    WithdrawMoneyRequest::class,
+    WithdrawMoneyController::class
 );
 
 $router();

@@ -3,7 +3,7 @@
 namespace Banky\Transaction;
 
 use Banky\Customer\CustomerId;
-use BankyFramework\Money;
+use Banky\Transaction\Money;
 use BankyFramework\Serializable;
 use Comquer\ArrayValidator\ArrayValidator;
 
@@ -59,6 +59,11 @@ class Transaction implements Serializable
     public function getBonus() : Money
     {
         return $this->bonus;
+    }
+
+    public function getAmount() : Money
+    {
+        return $this->amount;
     }
 
     public function serialize() : array

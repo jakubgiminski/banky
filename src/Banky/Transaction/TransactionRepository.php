@@ -3,6 +3,7 @@
 namespace Banky\Transaction;
 
 use Banky\Customer\CustomerId;
+use Banky\Transaction\Money;
 use BankyFramework\Persistence\DatabaseClient;
 
 class TransactionRepository
@@ -27,19 +28,36 @@ class TransactionRepository
     public function getLatestDeposits(CustomerId $customerId, int $limit) : TransactionCollection
     {
         $table = self::TABLE;
-        $result = $this->databaseClient->rawSql("
-            SELECT * FROM $table WHERE customerId = '$customerId' ORDER BY CAST(timestamp as UNSIGNED) DESC LIMIT $limit
+        $results = $this->databaseClient->rawSql("
+            SELECT * FROM $table WHERE customerId = '$customerId' AND amount > 0 ORDER BY CAST(timestamp as UNSIGNED) DESC LIMIT $limit
         ");
 
-        $deposits = new TransactionCollection();
-        if ($result === false) {
-            return $deposits;
+        return $this->hydrateResults($results);
+    }
+
+    public function getBalance(CustomerId $customerId) : Money
+    {
+        $table = self::TABLE;
+        $results = $this->databaseClient->rawSql("
+            SELECT * FROM $table WHERE customerId = '$customerId'
+        ");
+        $transactions = $this->hydrateResults($results);
+        
+        return $transactions->calculateBalance();
+    }
+
+    private function hydrateResults($results) : TransactionCollection
+    {
+        $transactions = new TransactionCollection();
+
+        if (is_array($results) === false) {
+            return new $transactions;
         }
 
-        foreach ($result as $record) {
-            $deposits->add(Transaction::deserialize($record));
+        foreach ($results as $record) {
+            $transactions->add(Transaction::deserialize($record));
         }
 
-        return $deposits;
+        return $transactions;
     }
 }

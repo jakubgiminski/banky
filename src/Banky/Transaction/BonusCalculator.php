@@ -4,7 +4,6 @@ namespace Banky\Transaction;
 
 use Banky\Customer\CustomerId;
 use Banky\Customer\CustomerRepository;
-use BankyFramework\Money;
 
 final class BonusCalculator
 {
@@ -18,13 +17,13 @@ final class BonusCalculator
         $this->transactionRepository = $transactionRepository;
     }
 
-    public function __invoke(CustomerId $customerId, Money $deposited) : Money
+    public function __invoke(CustomerId $customerId, Money $depositAmount) : Money
     {
         if ($this->isCustomerEligibleForBonus($customerId) === false) {
             return new Money(0);
         }
 
-        return $deposited->multiplyBy(
+        return $depositAmount->multiplyBy(
             $this->customerRepository->getBonusMultiplier($customerId)
         );
     }

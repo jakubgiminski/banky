@@ -18,4 +18,16 @@ class TransactionCollection extends Collection
             })
         );
     }
+
+    public function calculateBalance() : Money
+    {
+        $balance = new Money();
+
+        /** @var Transaction $transaction */
+        foreach ($this as $transaction) {
+            $balance = $balance->add($transaction->getAmount());
+        }
+
+        return $balance;
+    }
 }

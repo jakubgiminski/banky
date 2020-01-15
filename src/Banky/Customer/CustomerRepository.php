@@ -2,6 +2,7 @@
 
 namespace Banky\Customer;
 
+use Banky\Transaction\Money;
 use BankyFramework\Persistence\DatabaseClient;
 
 final class CustomerRepository
