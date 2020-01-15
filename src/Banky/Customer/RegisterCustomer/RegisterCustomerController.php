@@ -19,7 +19,7 @@ class RegisterCustomerController
     public function __invoke(RegisterCustomerRequest $request) : CreateResourceResponse
     {
         $customerEmail = $request->getParameter('email');
-        if ($this->customerRepository->exists($customerEmail) === true) {
+        if ($this->customerRepository->customerWithEmailExists($customerEmail) === true) {
             throw RegisterCustomerException::customerAlreadyRegistered($customerEmail);
         }
 
@@ -33,7 +33,7 @@ class RegisterCustomerController
             RegistrationBonus::random()
         );
 
-        $this->customerRepository->persist($customer);
+        $this->customerRepository->save($customer);
 
         return CreateResourceResponse::fromResource($customer->serialize());
     }

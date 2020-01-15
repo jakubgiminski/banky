@@ -27,7 +27,7 @@ class CustomerRepositoryTest extends TestCase
     {
         $repository = $this->container->get(CustomerRepository::class);
         self::assertFalse(
-            $repository->exists('does@not.com')
+            $repository->customerWithEmailExists('does@not.com')
         );
     }
 
@@ -36,10 +36,10 @@ class CustomerRepositoryTest extends TestCase
     {
         $repository = $this->container->get(CustomerRepository::class);
         $customer = TestCustomer::generate();
-        $repository->persist($customer);
+        $repository->save($customer);
 
         self::assertTrue(
-            $repository->exists($customer->getEmail())
+            $repository->customerWithEmailExists($customer->getEmail())
         );
     }
 }

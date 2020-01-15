@@ -15,7 +15,7 @@ final class CustomerRepository
         $this->databaseClient = $databaseClient;
     }
 
-    public function exists(string $email) : bool
+    public function customerWithEmailExists(string $email) : bool
     {
         $customers = $this->databaseClient->fetch(
             self::TABLE,
@@ -27,8 +27,9 @@ final class CustomerRepository
         return empty($customers) === false;
     }
 
-    public function persist(Customer $customer) : void
+    public function save(Customer $customer) : void
     {
+        // @todo refactor insert into upsert
         $this->databaseClient->insert(
             self::TABLE,
             $customer->serialize()

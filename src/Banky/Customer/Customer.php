@@ -2,7 +2,9 @@
 
 namespace Banky\Customer;
 
-class Customer
+use BankyFramework\Serializable;
+
+class Customer implements Serializable
 {
     private CustomerId $id;
 

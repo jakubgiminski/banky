@@ -2,6 +2,8 @@
 
 namespace Banky;
 
+use Banky\Customer\CustomerRepository;
+use Banky\Transaction\TransactionRepository;
 use BankyFramework\Persistence\DatabaseClient;
 
 final class SetUpDatabase
@@ -19,8 +21,9 @@ final class SetUpDatabase
         $this->databaseClient->rawSql("CREATE DATABASE $databaseName;");
         $this->databaseClient->rawSql("USE $databaseName;");
 
+        $customersTable = CustomerRepository::TABLE;
         $this->databaseClient->rawSql(
-            'CREATE TABLE customers (
+            "CREATE TABLE $customersTable (
                 id varchar(100),
                 firstName varchar(100), 
                 lastName varchar(100), 
@@ -28,7 +31,17 @@ final class SetUpDatabase
                 country varchar(100), 
                 email varchar(100), 
                 bonus int(3)
-            )'
+            )"
+        );
+
+        $transactionsTable = TransactionRepository::TABLE;
+        $this->databaseClient->rawSql(
+            "CREATE TABLE $transactionsTable (
+                id varchar(100),
+                amount varchar(100),
+                customerId varchar(100),
+                timestamp varchar(10)
+            )"
         );
     }
 }

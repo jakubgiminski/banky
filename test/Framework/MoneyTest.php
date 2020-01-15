@@ -14,5 +14,10 @@ class MoneyTest extends TestCase
             33.44,
             (new Money(33.44222111))->getValue()
         );
+
+        self::assertSame(
+            -33.44,
+            (new Money(-33.44222111))->getValue()
+        );
     }
 }
