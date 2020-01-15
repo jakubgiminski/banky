@@ -28,7 +28,7 @@ class TransactionRepository
     {
         $table = self::TABLE;
         $result = $this->databaseClient->rawSql("
-            SELECT * FROM $table WHERE customerId='$customerId' LIMIT $limit
+            SELECT * FROM $table WHERE customerId = '$customerId' ORDER BY CAST(timestamp as UNSIGNED) DESC LIMIT $limit
         ");
 
         $deposits = new TransactionCollection();

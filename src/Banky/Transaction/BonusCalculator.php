@@ -23,9 +23,10 @@ final class BonusCalculator
         if ($this->isCustomerEligibleForBonus($customerId) === false) {
             return new Money(0);
         }
-        $bonus = $this->customerRepository->getBonusMultiplier($customerId);
 
-        return $deposited->multiplyBy($bonus);
+        return $deposited->multiplyBy(
+            $this->customerRepository->getBonusMultiplier($customerId)
+        );
     }
 
     private function isCustomerEligibleForBonus(CustomerId $customerId) : bool
@@ -38,7 +39,7 @@ final class BonusCalculator
 
         /** @var Transaction $deposit */
         foreach ($latestDeposits as $deposit) {
-            if ($deposit->getBonus()->getValue() !== 0) {
+            if ($deposit->getBonus()->getValue() !== (float) 0) {
                 return false;
             }
         }
