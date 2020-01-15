@@ -12,7 +12,9 @@ class RegisterCustomerRequest extends Request
         $this->requireStringParameter('firstName');
         $this->requireStringParameter('lastName');
         $this->requireStringParameter('gender');
-        $this->requireStringParameter('country');
         $this->requireEmailParameter('email');
+        $this->requireParameter('country', function (string $value) : bool {
+            return strlen($value) === 2 && $value === strtoupper($value);
+        });
     }
 }
