@@ -14,11 +14,16 @@ class DepositMoneyController
 {
     private TransactionRepository $transactionRepository;
 
+    public function __construct(TransactionRepository $transactionRepository)
+    {
+        $this->transactionRepository = $transactionRepository;
+    }
+
     public function __invoke(DepositMoneyRequest $request) : CreateResourceResponse
     {
         $transaction = new Transaction(
             TransactionId::generate(),
-            new Money($request->getParameter('amount')),
+            new Money((float) $request->getParameter('amount')),
             new CustomerId($request->getParameter('customerId')),
             (new DateTimeImmutable())->getTimestamp()
         );
