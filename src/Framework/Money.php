@@ -15,4 +15,10 @@ class Money
     {
         return $this->value;
     }
+
+    public function multiplyBy(float $number) : self
+    {
+        $multiplied = $this->getValue() * $number;
+        return new self($multiplied);
+    }
 }

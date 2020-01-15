@@ -40,7 +40,8 @@ final class SetUpDatabase
                 id varchar(100),
                 amount varchar(100),
                 customerId varchar(100),
-                timestamp varchar(10)
+                timestamp varchar(10),
+                bonus varchar (100)
             )"
         );
     }

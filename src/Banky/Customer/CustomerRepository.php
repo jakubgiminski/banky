@@ -47,4 +47,13 @@ final class CustomerRepository
 
         return empty($customers) === false;
     }
+
+    public function getBonusMultiplier(CustomerId $customerId) : float
+    {
+        $result = $this->databaseClient->fetch(self::TABLE, [
+            'id' => (string) $customerId,
+        ]);
+
+        return ((int) $result['bonus']) / 100;
+    }
 }

@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types=0);
 
 namespace Banky\Transaction;
 
 use Banky\Customer\CustomerId;
 use BankyFramework\Money;
 use BankyFramework\Serializable;
+use Comquer\ArrayValidator\ArrayValidator;
 
 class Transaction implements Serializable
 {
@@ -27,24 +28,37 @@ class Transaction implements Serializable
         $this->bonus = $bonus ?: new Money(0);
     }
 
+    public static function deserialize(array $record) : self
+    {
+        self::validateSerialized($record);
+        return new self(
+            new TransactionId($record['id']),
+            new Money($record['amount']),
+            new CustomerId($record['customerId']),
+            $record['timestamp'],
+            new Money($record['bonus'])
+        );
+    }
+
+    private static function validateSerialized(array $record) : void
+    {
+        ArrayValidator::validateMultipleKeysExist([
+            'id',
+            'amount',
+            'customerId',
+            'timestamp',
+            'bonus',
+        ], $record);
+    }
+
     public function getId() : TransactionId
     {
         return $this->id;
     }
 
-    public function getAmount() : Money
+    public function getBonus() : Money
     {
-        return $this->amount;
-    }
-
-    public function getCustomerId() : CustomerId
-    {
-        return $this->customerId;
-    }
-
-    public function getTimestamp() : int
-    {
-        return $this->timestamp;
+        return $this->bonus;
     }
 
     public function serialize() : array
@@ -54,6 +68,7 @@ class Transaction implements Serializable
             'amount' => $this->amount->getValue(),
             'customerId' => (string) $this->customerId,
             'timestamp' => $this->timestamp,
+            'bonus' => $this->bonus->getValue(),
         ];
     }
 }

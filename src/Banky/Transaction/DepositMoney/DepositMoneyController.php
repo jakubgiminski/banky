@@ -5,6 +5,7 @@ namespace Banky\Transaction\DepositMoney;
 use Banky\Customer\CustomerDoesNotExistsException;
 use Banky\Customer\CustomerId;
 use Banky\Customer\CustomerRepository;
+use Banky\Transaction\BonusCalculator;
 use Banky\Transaction\Transaction;
 use Banky\Transaction\TransactionId;
 use Banky\Transaction\TransactionRepository;
@@ -18,22 +19,30 @@ class DepositMoneyController
 
     private TransactionRepository $transactionRepository;
 
-    public function __construct(CustomerRepository $customerRepository, TransactionRepository $transactionRepository)
-    {
+    private BonusCalculator $bonusCalculator;
+
+    public function __construct(
+        CustomerRepository $customerRepository,
+        TransactionRepository $transactionRepository,
+        BonusCalculator $bonusCalculator
+    ) {
         $this->customerRepository = $customerRepository;
         $this->transactionRepository = $transactionRepository;
+        $this->bonusCalculator = $bonusCalculator;
     }
 
     public function __invoke(DepositMoneyRequest $request) : CreateResourceResponse
     {
         $customerId = new CustomerId($request->getParameter('customerId'));
+        $depositedAmount = new Money((float) $request->getParameter('amount'));
         $this->customerMustExist($customerId);
 
         $transaction = new Transaction(
             TransactionId::generate(),
-            new Money((float) $request->getParameter('amount')),
+            $depositedAmount,
             $customerId,
-            (new DateTimeImmutable())->getTimestamp()
+            (new DateTimeImmutable())->getTimestamp(),
+            ($this->bonusCalculator)($customerId, $depositedAmount)
         );
 
         $this->transactionRepository->save($transaction);

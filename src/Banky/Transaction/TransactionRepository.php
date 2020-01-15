@@ -2,6 +2,7 @@
 
 namespace Banky\Transaction;
 
+use Banky\Customer\CustomerId;
 use BankyFramework\Persistence\DatabaseClient;
 
 class TransactionRepository
@@ -21,5 +22,24 @@ class TransactionRepository
             self::TABLE,
             $transaction->serialize()
         );
+    }
+
+    public function getLatestDeposits(CustomerId $customerId, int $limit) : TransactionCollection
+    {
+        $table = self::TABLE;
+        $result = $this->databaseClient->rawSql("
+            SELECT * FROM $table WHERE customerId='$customerId' LIMIT $limit
+        ");
+
+        $deposits = new TransactionCollection();
+        if ($result === false) {
+            return $deposits;
+        }
+
+        foreach ($result as $record) {
+            $deposits->add(Transaction::deserialize($record));
+        }
+
+        return $deposits;
     }
 }
