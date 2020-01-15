@@ -27,6 +27,7 @@ class WithdrawMoneyController extends TransactionController
         $transaction = new Transaction(
             TransactionId::generate(),
             $withdrawalAmount->revert(),
+            $currentBalance->subtract($withdrawalAmount),
             $customerId,
             (new DateTimeImmutable())->getTimestamp()
         );

@@ -11,7 +11,7 @@ final class SqlGenerator
         }, $record);
 
         $values = implode(', ', $record);
-        $columns = implode(', ', array_flip($record));
+        $columns = implode(', ', array_keys($record));
 
         return "INSERT INTO $tableName ($columns) VALUES ($values);";
     }

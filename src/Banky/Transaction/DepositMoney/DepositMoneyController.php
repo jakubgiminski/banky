@@ -32,10 +32,12 @@ class DepositMoneyController extends TransactionController
         $this->customerMustExist($customerId);
 
         $depositAmount = new Money((float) $request->getParameter('amount'));
+        $currentBalance = $this->transactionRepository->getBalance($customerId);
 
         $transaction = new Transaction(
             TransactionId::generate(),
             $depositAmount,
+            $currentBalance->add($depositAmount),
             $customerId,
             (new DateTimeImmutable())->getTimestamp(),
             ($this->bonusCalculator)($customerId, $depositAmount)

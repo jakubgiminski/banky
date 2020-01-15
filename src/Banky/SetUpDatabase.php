@@ -39,6 +39,7 @@ final class SetUpDatabase
             "CREATE TABLE $transactionsTable (
                 id varchar(100),
                 amount varchar(100),
+                balanceAfterwards varchar(100),
                 customerId varchar(100),
                 timestamp varchar(10),
                 bonus varchar (100)

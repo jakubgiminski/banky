@@ -27,6 +27,11 @@ class Money
         return new self($this->value + $money->getValue());
     }
 
+    public function subtract(Money $money) : self
+    {
+        return new self($this->value - $money->getValue());
+    }
+
     public function revert() : self
     {
         if ($this->value === 0) {

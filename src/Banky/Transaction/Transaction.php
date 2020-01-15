@@ -3,7 +3,6 @@
 namespace Banky\Transaction;
 
 use Banky\Customer\CustomerId;
-use Banky\Transaction\Money;
 use BankyFramework\Serializable;
 use Comquer\ArrayValidator\ArrayValidator;
 
@@ -13,19 +12,22 @@ class Transaction implements Serializable
 
     private Money $amount;
 
+    private Money $balanceAfterwards;
+
     private CustomerId $customerId;
 
     private int $timestamp;
 
     private Money $bonus;
 
-    public function __construct(TransactionId $id, Money $amount, CustomerId $customerId, int $timestamp, Money $bonus = null)
+    public function __construct(TransactionId $id, Money $amount, Money $balanceAfterwards, CustomerId $customerId, int $timestamp, Money $bonus = null)
     {
         $this->id = $id;
         $this->amount = $amount;
+        $this->balanceAfterwards = $balanceAfterwards;
         $this->customerId = $customerId;
         $this->timestamp = $timestamp;
-        $this->bonus = $bonus ?: new Money(0);
+        $this->bonus = $bonus ?: new Money();
     }
 
     public static function deserialize(array $record) : self
@@ -34,6 +36,7 @@ class Transaction implements Serializable
         return new self(
             new TransactionId($record['id']),
             new Money($record['amount']),
+            new Money($record['balanceAfterwards']),
             new CustomerId($record['customerId']),
             $record['timestamp'],
             new Money($record['bonus'])
@@ -45,6 +48,7 @@ class Transaction implements Serializable
         ArrayValidator::validateMultipleKeysExist([
             'id',
             'amount',
+            'balanceAfterwards',
             'customerId',
             'timestamp',
             'bonus',
@@ -71,6 +75,7 @@ class Transaction implements Serializable
         return [
             'id' => (string) $this->id,
             'amount' => $this->amount->getValue(),
+            'balanceAfterwards' => $this->balanceAfterwards->getValue(),
             'customerId' => (string) $this->customerId,
             'timestamp' => $this->timestamp,
             'bonus' => $this->bonus->getValue(),
