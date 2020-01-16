@@ -29,32 +29,38 @@ class TransactionRepository
     {
         $table = self::TABLE;
         $results = $this->databaseClient->rawSql("
-            SELECT * FROM $table WHERE customerId = '$customerId' AND amount > 0 ORDER BY CAST(timestamp as UNSIGNED) DESC LIMIT $limit
+            SELECT * FROM $table WHERE customerId = '$customerId' AND amount > 0 ORDER BY timestamp DESC LIMIT $limit
         ");
 
-        return $this->hydrateResults($results);
+        return $this->hydrateRecords($results);
     }
 
     public function getBalance(CustomerId $customerId) : Money
     {
         $table = self::TABLE;
-        $results = $this->databaseClient->rawSql("
-            SELECT * FROM $table WHERE customerId = '$customerId'
+        $records = $this->databaseClient->rawSql("
+            SELECT * FROM $table WHERE customerId = '$customerId' ORDER BY timestamp DESC LIMIT 1
         ");
-        $transactions = $this->hydrateResults($results);
 
-        return $transactions->calculateBalance();
+        $transactions = $this->hydrateRecords($records);
+
+        /** @var Transaction $lastTransaction */
+        $lastTransaction = $transactions->getLast();
+
+        return $transactions->isEmpty() == true
+            ? new Money()
+            : $lastTransaction->getBalanceAfterwards();
     }
 
-    private function hydrateResults($results) : TransactionCollection
+    private function hydrateRecords($records) : TransactionCollection
     {
         $transactions = new TransactionCollection();
 
-        if ($results instanceof mysqli_result === false) {
+        if ($records instanceof mysqli_result === false) {
             return $transactions;
         }
-        
-        foreach ($results as $record) {
+
+        foreach ($records as $record) {
             $transactions->add(Transaction::deserialize($record));
         }
 

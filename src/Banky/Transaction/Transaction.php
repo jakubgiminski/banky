@@ -16,11 +16,11 @@ class Transaction implements Serializable
 
     private CustomerId $customerId;
 
-    private int $timestamp;
+    private float $timestamp;
 
     private Money $bonus;
 
-    public function __construct(TransactionId $id, Money $amount, Money $balanceAfterwards, CustomerId $customerId, int $timestamp, Money $bonus = null)
+    public function __construct(TransactionId $id, Money $amount, Money $balanceAfterwards, CustomerId $customerId, float $timestamp, Money $bonus = null)
     {
         $this->id = $id;
         $this->amount = $amount;
@@ -68,6 +68,11 @@ class Transaction implements Serializable
     public function getAmount() : Money
     {
         return $this->amount;
+    }
+
+    public function getBalanceAfterwards() : Money
+    {
+        return $this->balanceAfterwards;
     }
 
     public function serialize() : array

@@ -39,7 +39,7 @@ class DepositMoneyController extends TransactionController
             $depositAmount,
             $currentBalance->add($depositAmount),
             $customerId,
-            (new DateTimeImmutable())->getTimestamp(),
+            microtime(true),
             ($this->bonusCalculator)($customerId, $depositAmount)
         );
 

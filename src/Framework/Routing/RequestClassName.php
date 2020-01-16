@@ -2,7 +2,6 @@
 
 namespace BankyFramework\Routing;
 
-use BankyFramework\Http\Request;
 use Comquer\Reflection\ClassName\ClassName;
 
 class RequestClassName extends ClassName

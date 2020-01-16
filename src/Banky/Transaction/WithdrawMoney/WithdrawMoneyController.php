@@ -29,7 +29,7 @@ class WithdrawMoneyController extends TransactionController
             $withdrawalAmount->revert(),
             $currentBalance->subtract($withdrawalAmount),
             $customerId,
-            (new DateTimeImmutable())->getTimestamp()
+            microtime(true)
         );
 
         $this->transactionRepository->save($transaction);
