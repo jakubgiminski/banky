@@ -24,12 +24,12 @@ class Money
 
     public function add(self $money) : self
     {
-        return new self($this->value + $money->getValue());
+        return new self($this->value + ($money->getValue()));
     }
 
     public function subtract(Money $money) : self
     {
-        return new self($this->value - $money->getValue());
+        return new self($this->value - ($money->getValue()));
     }
 
     public function revert() : self

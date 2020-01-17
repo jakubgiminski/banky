@@ -3,6 +3,8 @@
 use Banky\BootstrapContainer;
 use Banky\Customer\RegisterCustomer\RegisterCustomerController;
 use Banky\Customer\RegisterCustomer\RegisterCustomerRequest;
+use Banky\Report\GenerateReport\GenerateReportController;
+use Banky\Report\GenerateReport\GenerateReportRequest;
 use Banky\Transaction\DepositMoney\DepositMoneyController;
 use Banky\Transaction\DepositMoney\DepositMoneyRequest;
 use Banky\Transaction\WithdrawMoney\WithdrawMoneyController;
@@ -33,6 +35,13 @@ $router->registerRoute(
     '/withdrawals',
     WithdrawMoneyRequest::class,
     WithdrawMoneyController::class
+);
+
+$router->registerRoute(
+    'GET',
+    '/reports',
+    GenerateReportRequest::class,
+    GenerateReportController::class
 );
 
 $router();

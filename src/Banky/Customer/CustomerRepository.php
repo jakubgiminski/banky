@@ -2,7 +2,6 @@
 
 namespace Banky\Customer;
 
-use Banky\Transaction\Money;
 use BankyFramework\Persistence\DatabaseClient;
 
 final class CustomerRepository
@@ -32,7 +31,6 @@ final class CustomerRepository
 
     public function save(Customer $customer) : void
     {
-        // @todo refactor insert into upsert
         $this->databaseClient->insert(
             self::TABLE,
             $customer->serialize()

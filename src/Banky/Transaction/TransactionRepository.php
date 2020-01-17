@@ -52,6 +52,16 @@ class TransactionRepository
             : $lastTransaction->getBalanceAfterwards();
     }
 
+    public function getForPeriod(float $beginning, float $end) : TransactionCollection
+    {
+        $table = self::TABLE;
+        $records = $this->databaseClient->rawSql("
+            SELECT * FROM $table WHERE timestamp >= $beginning AND timestamp <= $end
+        ");
+
+        return $this->hydrateRecords($records);
+    }
+
     private function hydrateRecords($records) : TransactionCollection
     {
         $transactions = new TransactionCollection();

@@ -75,6 +75,11 @@ class Transaction implements Serializable
         return $this->balanceAfterwards;
     }
 
+    public function getCustomerId() : CustomerId
+    {
+        return $this->customerId;
+    }
+
     public function serialize() : array
     {
         return [
