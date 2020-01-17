@@ -45,12 +45,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/comquer/collection.git",
-                "reference": "4a179ae482afddc43f51fa1c5f3651b3812635f3"
+                "reference": "98c61194fb2b2e9b0b435b654a792f6e1e0a994d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/comquer/collection/zipball/4a179ae482afddc43f51fa1c5f3651b3812635f3",
-                "reference": "4a179ae482afddc43f51fa1c5f3651b3812635f3",
+                "url": "https://api.github.com/repos/comquer/collection/zipball/98c61194fb2b2e9b0b435b654a792f6e1e0a994d",
+                "reference": "98c61194fb2b2e9b0b435b654a792f6e1e0a994d",
                 "shasum": ""
             },
             "require-dev": {
@@ -69,7 +69,7 @@
                     "email": "jakubgiminski@gmail.com"
                 }
             ],
-            "time": "2019-06-16T20:46:25+00:00"
+            "time": "2020-01-17T09:39:49+00:00"
         },
         {
             "name": "comquer/reflection",

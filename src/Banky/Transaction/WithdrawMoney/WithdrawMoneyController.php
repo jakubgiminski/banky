@@ -3,12 +3,11 @@
 namespace Banky\Transaction\WithdrawMoney;
 
 use Banky\Customer\CustomerId;
+use Banky\Transaction\Money;
 use Banky\Transaction\Transaction;
 use Banky\Transaction\TransactionController;
 use Banky\Transaction\TransactionId;
 use BankyFramework\Http\CreateResourceResponse;
-use Banky\Transaction\Money;
-use DateTimeImmutable;
 
 class WithdrawMoneyController extends TransactionController
 {
