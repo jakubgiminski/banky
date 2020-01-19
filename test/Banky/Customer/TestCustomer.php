@@ -15,7 +15,7 @@ final class TestCustomer extends Customer
             uniqid('first_name_'),
             uniqid('last_name_'),
             uniqid('gender_'),
-            uniqid('country_'),
+            'UK',
             uniqid('email_'),
             RegistrationBonus::random()
         );

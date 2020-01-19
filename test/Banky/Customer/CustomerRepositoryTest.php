@@ -2,28 +2,11 @@
 
 namespace BankyTest\Customer;
 
-use Banky\BootstrapContainer;
 use Banky\Customer\CustomerRepository;
-use Banky\BootstrapDatabase;
-use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
+use BankyTes\BankyTest;
 
-class CustomerRepositoryTest extends TestCase
+class CustomerRepositoryTest extends BankyTest
 {
-    private ContainerInterface $container;
-
-    public function setUp() : void
-    {
-        $this->container = (new BootstrapContainer())();
-
-        $bootstrapDatabase = $this->container->get(BootstrapDatabase::class);
-
-        $databaseConfig = require __DIR__ . '/../../../src/databaseConfig.php';
-        $bootstrapDatabase($databaseConfig['database']);
-
-        parent::setUp();
-    }
-
     /** @test */
     public function customerDoesNotExist() : void
     {

@@ -47,7 +47,7 @@ class TransactionRepository
         /** @var Transaction $lastTransaction */
         $lastTransaction = $transactions->getLast();
 
-        return $transactions->isEmpty() == true
+        return $transactions->isEmpty() === true
             ? new Money()
             : $lastTransaction->getBalanceAfterwards();
     }

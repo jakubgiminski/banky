@@ -38,6 +38,36 @@ class Customer implements Serializable
         $this->bonus = $bonus;
     }
 
+    public function getId() : CustomerId
+    {
+        return $this->id;
+    }
+
+    public function getFirstName() : string
+    {
+        return $this->firstName;
+    }
+
+    public function getLastName() : string
+    {
+        return $this->lastName;
+    }
+
+    public function getGender() : string
+    {
+        return $this->gender;
+    }
+
+    public function getCountry() : string
+    {
+        return $this->country;
+    }
+
+    public function getBonus() : int
+    {
+        return $this->bonus;
+    }
+
     public function getEmail() : string
     {
         return $this->email;
