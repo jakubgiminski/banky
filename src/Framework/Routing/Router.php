@@ -38,7 +38,13 @@ class Router extends Collection
 
     public function __invoke() : void
     {
-        $route = $this->getRoute($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+        try {
+            $route = $this->getRoute($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+        } catch (Throwable $exception) {
+            $this->resolve(ErrorResponse::routeNotFound());
+            return;
+        }
+
         $requestClassName = (string) $route->getRequestClassName();
         $payload = strtoupper($_SERVER['REQUEST_METHOD']) === 'POST' ? $_POST : $_GET;
         $request = new $requestClassName($payload);

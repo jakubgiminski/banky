@@ -10,4 +10,9 @@ class ErrorResponse extends Response
     {
         return new self($exception->getCode() ?: 500, [$exception->getMessage()]);
     }
+
+    public static function routeNotFound()
+    {
+        return new self(404, ['Route not found']);
+    }
 }
