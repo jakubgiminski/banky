@@ -34,9 +34,6 @@ final class BootstrapContainer
         $customerRepository = $container->get(CustomerRepository::class);
         $container->set(RegisterCustomerController::class, new RegisterCustomerController($customerRepository));
 
-        $bootstrapDatabase = $container->get(BootstrapDatabase::class);
-        $bootstrapDatabase($databaseConfig['database']);
-
         return $container;
     }
 }
