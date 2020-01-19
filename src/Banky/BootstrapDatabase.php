@@ -24,25 +24,27 @@ final class BootstrapDatabase
         $customersTable = CustomerRepository::TABLE;
         $this->databaseClient->rawSql(
             "CREATE TABLE $customersTable (
-                id varchar(36),
-                firstName varchar(100),
-                lastName varchar(100),
-                gender varchar(100),
-                country varchar(2),
-                email varchar(100),
-                bonus int(3)
+                id varchar(36) NOT NULL,
+                firstName varchar(100) NOT NULL,
+                lastName varchar(100) NOT NULL,
+                gender varchar(100) NOT NULL,
+                country varchar(2) NOT NULL,
+                email varchar(100) NOT NULL UNIQUE,
+                bonus int(3) NOT NULL,
+                PRIMARY KEY (email)
             )"
         );
 
         $transactionsTable = TransactionRepository::TABLE;
         $this->databaseClient->rawSql(
             "CREATE TABLE $transactionsTable (
-                id varchar(36),
-                amount double(100, 2),
-                balanceAfterwards double(100, 2),
-                customerId varchar(36),
-                timestamp double(20, 4),
-                bonus double(100, 2)
+                id varchar(36) NOT NULL,
+                amount double(100, 2) NOT NULL,
+                balanceAfterwards double(100, 2) NOT NULL,
+                customerId varchar(36) NOT NULL,
+                timestamp double(20, 4) NOT NULL,
+                bonus double(100, 2) NOT NULL,
+                PRIMARY KEY (id)
             )"
         );
     }
