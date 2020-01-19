@@ -23,6 +23,8 @@ Finally, use a server in order to serve the app. You can choose whichever one yo
 in server is the simplest (but not production ready.)
 ```php -S localhost:8000 -t .```
 
+**Please note that the test suite uses the same database as production code, meaning every test run drops the production data.**
+
 ### API Documentation
 Customer Registration
 ```
