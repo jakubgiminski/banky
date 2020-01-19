@@ -3,7 +3,7 @@
 namespace BankyTest\Customer;
 
 use Banky\Customer\CustomerRepository;
-use BankyTes\BankyTest;
+use BankyTest\BankyTest;
 
 class CustomerRepositoryTest extends BankyTest
 {

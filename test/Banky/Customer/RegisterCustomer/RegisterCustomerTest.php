@@ -6,13 +6,13 @@ use Banky\Customer\RegisterCustomer\RegisterCustomerController;
 use Banky\Customer\RegisterCustomer\RegisterCustomerException;
 use Banky\Customer\RegisterCustomer\RegisterCustomerRequest;
 use BankyFramework\Http\CreateResourceResponse;
-use BankyTes\BankyTest;
+use BankyTest\BankyTest;
 use BankyTest\Customer\TestCustomer;
 
 class RegisterCustomerTest extends BankyTest
 {
     /** @test */
-    public function registerCustomer() : void
+    public function successfullyRegisterCustomer() : void
     {
         $controller = $this->container->get(RegisterCustomerController::class);
         $customer = TestCustomer::generate();
