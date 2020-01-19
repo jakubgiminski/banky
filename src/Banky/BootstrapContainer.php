@@ -16,12 +16,14 @@ final class BootstrapContainer
     {
         $container = new Container();
 
+        $databaseConfig = require __DIR__ . '/../databaseConfig.php';
+
         $container->set(mysqli::class, new mysqli(
-            '10.19.17.12',
-            'root',
-            'password',
-            'bank',
-            3306
+            $databaseConfig['host'],
+            $databaseConfig['username'],
+            $databaseConfig['password'],
+            $databaseConfig['database'],
+            $databaseConfig['port'],
         ));
 
         $databaseClient = $container->get(MySqlClient::class);
@@ -31,6 +33,9 @@ final class BootstrapContainer
 
         $customerRepository = $container->get(CustomerRepository::class);
         $container->set(RegisterCustomerController::class, new RegisterCustomerController($customerRepository));
+
+        $bootstrapDatabase = $container->get(BootstrapDatabase::class);
+        $bootstrapDatabase($databaseConfig['database']);
 
         return $container;
     }

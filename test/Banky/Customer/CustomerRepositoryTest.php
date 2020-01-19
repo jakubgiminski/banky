@@ -4,7 +4,7 @@ namespace BankyTest\Customer;
 
 use Banky\BootstrapContainer;
 use Banky\Customer\CustomerRepository;
-use Banky\SetUpDatabase;
+use Banky\BootstrapDatabase;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -16,8 +16,10 @@ class CustomerRepositoryTest extends TestCase
     {
         $this->container = (new BootstrapContainer())();
 
-        $setUpDatabase = $this->container->get(SetUpDatabase::class);
-        $setUpDatabase('bank');
+        $bootstrapDatabase = $this->container->get(BootstrapDatabase::class);
+
+        $databaseConfig = require __DIR__ . '/../../../src/databaseConfig.php';
+        $bootstrapDatabase($databaseConfig['database']);
 
         parent::setUp();
     }

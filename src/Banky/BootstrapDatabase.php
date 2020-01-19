@@ -6,7 +6,7 @@ use Banky\Customer\CustomerRepository;
 use Banky\Transaction\TransactionRepository;
 use BankyFramework\Persistence\DatabaseClient;
 
-final class SetUpDatabase
+final class BootstrapDatabase
 {
     private DatabaseClient $databaseClient;
 
