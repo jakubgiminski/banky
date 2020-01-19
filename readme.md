@@ -1,5 +1,4 @@
-# Banky
-## Online banking for a made-up bank. It's fake.
+# Banky - online banking for a made-up bank
 
 ### Overview
 Banky is an application that allows users to register new bank customers and keep track of their money transactions.
@@ -16,15 +15,40 @@ for PHP and 14.14 (5.1.73) for MySQL.
 
 Clone the repository and run `composer install` from within it in order to install project's dependencies. 
 
-Edit contents of the `src/databaseConfig.php` file appropriately (make sure the database you enter exists), 
+Edit contents of the `src/databaseConfig.php` file appropriately (make sure the database you enter exists,) 
 then run `php bootstrapDatabase.php` which recreates the database and applies the SQL schema.
 
 Finally, use a server in order to serve the app. You can choose whichever one you want but using the PHP's built 
-in server is the simplest.
+in server is the simplest (but not production ready.)
 ```php -S localhost:8000 -t .```
 
 ### API Documentation
-@todo
-
-
-
+Customer Registration
+```
+POST /customers {
+    'firstName' <any string>,
+    'lastName' <any string>,
+    'gender' <any string>,
+    'country' <country code string [UK, PL, ...]>,
+    'email' <email string>,
+} : 201, 400, 500
+```
+Money Deposit 
+```
+POST /deposits {
+    'customerId' <any string>,
+    'amount' <number higher than zero>,
+} : 201, 400, 500
+```
+Money Withdrawal
+```
+POST /withdrawals {
+    'customerId' <any string>,
+    'amount' <number higher than zero>,
+} : 201, 400, 500
+```
+Daily Reports
+```
+GET /reports {
+} : 200, 500
+```
