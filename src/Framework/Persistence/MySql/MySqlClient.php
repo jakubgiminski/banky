@@ -17,6 +17,7 @@ final class MySqlClient implements DatabaseClient
 
     public function fetch(string $tableName, array $query) : array
     {
+
         $result = $this->connection->query(
             SqlGenerator::select($tableName, $query)
         )->fetch_array();

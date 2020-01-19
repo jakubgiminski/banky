@@ -18,7 +18,7 @@ final class CustomerRepository
     public function customerWithEmailExists(string $email) : bool
     {
         return $this->customerExists([
-                'email' => $email,
+            'email' => $email,
         ]);
     }
 
