@@ -6,6 +6,7 @@ use Banky\Transaction\Money;
 use Banky\Transaction\WithdrawMoney\WithdrawMoneyController;
 use Banky\Transaction\WithdrawMoney\WithdrawMoneyException;
 use Banky\Transaction\WithdrawMoney\WithdrawMoneyRequest;
+use BankyFramework\Http\CreateResourceResponse;
 use BankyTest\BankyTest;
 
 class WithdrawMoneyTest extends BankyTest
@@ -24,6 +25,7 @@ class WithdrawMoneyTest extends BankyTest
             'amount' => $withdrawalAmount->getValue(),
         ]);
 
+        /** @var CreateResourceResponse $response */
         $response = $controller($request);
 
         self::assertEquals(

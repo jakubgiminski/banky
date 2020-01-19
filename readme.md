@@ -1,4 +1,5 @@
 # Banky - online banking for a made-up bank
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jakubgiminski/banky/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jakubgiminski/banky/?branch=master)
 
 ### Overview
 Banky is an application that allows users to register new bank customers and keep track of their money transactions.
